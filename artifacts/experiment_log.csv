@@ -1,4 +1,4 @@
 strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
-A,,,,,,,,,,,,
-B,,,,,,,,,,,,
-C,,,,,,,,,,,,
+A,fixed characters,500,50,"document_id;source;page;section",none,"sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2","Baseline; fixed windows may preserve useful neighboring context.",2/15,5/15,2/5,2/5,"Selection rule fixed before test review: maximize dev Evidence Hit@3, then dev Hit@1; use manual audit and runtime for ties. A leads on dev Evidence Hit@3; manual audit remains."
+B,paragraph-aware,500,0,"document_id;source;page;section",none,"sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2","Paragraph-aware chunks may improve coherence and evidence completeness over A.",2/15,4/15,3/5,4/5,"Compared with A, the chunking strategy changes; selection rule is based on dev only."
+C,paragraph-aware,500,0,"document_id;source;page;section","section filter from question","sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2","Metadata filtering may improve retrieval for questions with an explicit section scope.",2/15,4/15,3/5,4/5,"B and C use identical chunks; only C applies the user-supplied section filter. Selection rule is based on dev only."

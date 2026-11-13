@@ -1,0 +1,212 @@
+{
+  "benchmark_id": "telecom-06-00045-v1",
+  "document_id": "telecom-06-00045",
+  "source_sha256": "2f2f6d7905e9c9df70a4d58ca24a89a7271e2e16ae4c553594813286e9eb2d72",
+  "benchmark_sha256": "64653484ef5e4c57fc83c7e87116c52c15d074466bb0c34c53972865ebb453d8",
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "query_embedding_seconds": 2.25,
+  "database": {
+    "database": "day6_lab",
+    "postgresql": "16.16 (Debian 16.16-1.pgdg12+1)",
+    "pgvector": "0.8.7"
+  },
+  "vector_store": "PostgreSQL + pgvector",
+  "environment": {
+    "python": "3.13.0",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "embedding_device": "cpu",
+    "packages": {
+      "huggingface-hub": "1.33.0",
+      "numpy": "2.5.3",
+      "psycopg": "3.3.8",
+      "pypdf": "6.21.1",
+      "python-dotenv": "1.2.4",
+      "safetensors": "0.8.0",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "sentence-transformers": "5.7.0",
+      "tokenizers": "0.23.2",
+      "torch": "2.14.1",
+      "transformers": "5.18.0"
+    }
+  },
+  "strategies": [
+    {
+      "strategy": "A",
+      "configuration": {
+        "name": "A",
+        "chunker": "fixed",
+        "size": 500,
+        "overlap": 50
+      },
+      "chunk_count": 266,
+      "chunk_length_chars": {
+        "min": 69,
+        "mean": 473.12406015037595,
+        "max": 500
+      },
+      "new_embedding_chunks": 266,
+      "reused_embedding_chunks": 0,
+      "embedding_seconds": 20.553,
+      "store_seconds": 0.529,
+      "ingest_seconds": 21.082,
+      "retrieval_seconds": 0.889,
+      "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "embedding_dimensions": 384,
+      "vector_store": "PostgreSQL + pgvector",
+      "similarity": "exact cosine distance",
+      "cost_usd": 0
+    },
+    {
+      "strategy": "B",
+      "configuration": {
+        "name": "B",
+        "chunker": "paragraph",
+        "max_size": 500
+      },
+      "chunk_count": 288,
+      "chunk_length_chars": {
+        "min": 5,
+        "mean": 395.8923611111111,
+        "max": 500
+      },
+      "new_embedding_chunks": 288,
+      "reused_embedding_chunks": 0,
+      "embedding_seconds": 25.266,
+      "store_seconds": 5.158,
+      "ingest_seconds": 30.424,
+      "retrieval_seconds": 1.36,
+      "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "embedding_dimensions": 384,
+      "vector_store": "PostgreSQL + pgvector",
+      "similarity": "exact cosine distance",
+      "cost_usd": 0
+    },
+    {
+      "strategy": "C",
+      "configuration": {
+        "name": "C",
+        "chunker": "paragraph",
+        "max_size": 500
+      },
+      "chunk_count": 288,
+      "chunk_length_chars": {
+        "min": 5,
+        "mean": 395.8923611111111,
+        "max": 500
+      },
+      "new_embedding_chunks": 0,
+      "reused_embedding_chunks": 288,
+      "embedding_seconds": 0.0,
+      "store_seconds": 0.894,
+      "ingest_seconds": 0.894,
+      "retrieval_seconds": 1.83,
+      "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "embedding_dimensions": 384,
+      "vector_store": "PostgreSQL + pgvector",
+      "similarity": "exact cosine distance",
+      "cost_usd": 0
+    }
+  ],
+  "retrieval_metrics": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1": {
+        "hits": 2,
+        "total": 15,
+        "rate": 0.13333333333333333
+      },
+      "evidence_hit_at_3": {
+        "hits": 5,
+        "total": 15,
+        "rate": 0.3333333333333333
+      }
+    },
+    {
+      "strategy": "A",
+      "split": "test",
+      "questions": 5,
+      "hit_at_1": {
+        "hits": 2,
+        "total": 5,
+        "rate": 0.4
+      },
+      "evidence_hit_at_3": {
+        "hits": 2,
+        "total": 5,
+        "rate": 0.4
+      }
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1": {
+        "hits": 2,
+        "total": 15,
+        "rate": 0.13333333333333333
+      },
+      "evidence_hit_at_3": {
+        "hits": 4,
+        "total": 15,
+        "rate": 0.26666666666666666
+      }
+    },
+    {
+      "strategy": "B",
+      "split": "test",
+      "questions": 5,
+      "hit_at_1": {
+        "hits": 3,
+        "total": 5,
+        "rate": 0.6
+      },
+      "evidence_hit_at_3": {
+        "hits": 4,
+        "total": 5,
+        "rate": 0.8
+      }
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1": {
+        "hits": 2,
+        "total": 15,
+        "rate": 0.13333333333333333
+      },
+      "evidence_hit_at_3": {
+        "hits": 4,
+        "total": 15,
+        "rate": 0.26666666666666666
+      }
+    },
+    {
+      "strategy": "C",
+      "split": "test",
+      "questions": 5,
+      "hit_at_1": {
+        "hits": 3,
+        "total": 5,
+        "rate": 0.6
+      },
+      "evidence_hit_at_3": {
+        "hits": 4,
+        "total": 5,
+        "rate": 0.8
+      }
+    }
+  ],
+  "manual_audit_file": "results/manual_audit.json",
+  "manual_audit_status": "AI-assisted preliminary review; author verification required",
+  "manual_audit_required": [
+    "chunk_coherence",
+    "metadata_correctness_and_usefulness",
+    "grounding_quality",
+    "data_strategy_tradeoffs"
+  ]
+}

@@ -1,4 +1,13 @@
-# Core setup and PDF parsing. Choose and install an embedding SDK separately.
+# Local multilingual embeddings, PostgreSQL access and PDF parsing.
+huggingface-hub==1.33.0
+numpy==2.5.3
 psycopg[binary]==3.3.8
-pypdf>=5,<7
-python-dotenv>=1,<2
+pypdf==6.21.1
+python-dotenv==1.2.4
+safetensors==0.8.0
+scikit-learn==1.9.1
+scipy==1.18.1
+sentence-transformers==5.7.0
+tokenizers==0.23.2
+torch==2.14.1
+transformers==5.18.0

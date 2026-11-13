@@ -1,0 +1,314 @@
+{
+  "benchmark_id": "telecom-06-00045-v1",
+  "audit_type": "AI-assisted preliminary review for author verification",
+  "evaluator": "Copilot assistant; labels are not independent human ratings",
+  "method": "Read the source-grounded chunks and compare them with the evidence and rubric. No answer-generation model or separate LLM judge was used. The author should verify these judgments before submission.",
+  "coherence": {
+    "scale": {
+      "0": "Cut mid-idea or missing subject/context makes the chunk hard to understand.",
+      "1": "Partly understandable, but important context or part of the idea is missing.",
+      "2": "Self-contained and preserves the sampled idea."
+    },
+    "sample_rule": "Use the evidence anchors from q01, q02, q03, q05, q06, q07, q08, q09, q10 and q11. For each, select the chunk containing the first 32 normalized characters of its evidence quote; apply the same source position to A, B and C.",
+    "rows": [
+      {
+        "question_id": "q01",
+        "page": 2,
+        "chunk_ids": {
+          "A": "telecom-06-00045:2:fixed:0:cbfba697512d",
+          "B": "telecom-06-00045:2:paragraph:0:5d6afd37807d",
+          "C": "telecom-06-00045:2:paragraph:0:5d6afd37807d"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The sampled component list is a complete sentence in all three chunks; the preceding continuation does not obscure it."
+      },
+      {
+        "question_id": "q02",
+        "page": 3,
+        "chunk_ids": {
+          "A": "telecom-06-00045:3:fixed:1:27a11fe9e0d2",
+          "B": "telecom-06-00045:3:paragraph:1:02ea42ce5560",
+          "C": "telecom-06-00045:3:paragraph:1:02ea42ce5560"
+        },
+        "scores": {
+          "A": 2,
+          "B": 1,
+          "C": 1
+        },
+        "rationale": "A contains the full review-scope sentence. B and C begin with table content and cut the sampled sentence at the chunk boundary."
+      },
+      {
+        "question_id": "q03",
+        "page": 4,
+        "chunk_ids": {
+          "A": "telecom-06-00045:4:fixed:1:e064989aa91e",
+          "B": "telecom-06-00045:4:paragraph:1:beb6dddc9d5f",
+          "C": "telecom-06-00045:4:paragraph:1:beb6dddc9d5f"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "All three chunks retain the complete screening and final-inclusion statement."
+      },
+      {
+        "question_id": "q05",
+        "page": 6,
+        "chunk_ids": {
+          "A": "telecom-06-00045:6:fixed:0:3b9782eb82c1",
+          "B": "telecom-06-00045:6:paragraph:0:5f2202e639d7",
+          "C": "telecom-06-00045:6:paragraph:0:5f2202e639d7"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The full list of RF and system factors is present and understandable in each chunk."
+      },
+      {
+        "question_id": "q06",
+        "page": 8,
+        "chunk_ids": {
+          "A": "telecom-06-00045:8:fixed:2:08d564d6e6e8",
+          "B": "telecom-06-00045:8:paragraph:2:c7d949348deb",
+          "C": "telecom-06-00045:8:paragraph:2:c7d949348deb"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "Despite preceding antenna-table text, the matching-network heading and its full definition are retained."
+      },
+      {
+        "question_id": "q07",
+        "page": 9,
+        "chunk_ids": {
+          "A": "telecom-06-00045:9:fixed:1:7c0ab47305dd",
+          "B": "telecom-06-00045:9:paragraph:1:ecacc4a996e5",
+          "C": "telecom-06-00045:9:paragraph:1:ecacc4a996e5"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The π-network comparison and its bandwidth claim are intact in all chunks."
+      },
+      {
+        "question_id": "q08",
+        "page": 10,
+        "chunk_ids": {
+          "A": "telecom-06-00045:10:fixed:2:cfa05d68d035",
+          "B": "telecom-06-00045:10:paragraph:2:808360189a1f",
+          "C": "telecom-06-00045:10:paragraph:2:808360189a1f"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The main claim that multi-stage rectifiers lose overall efficiency is complete and has nearby context."
+      },
+      {
+        "question_id": "q09",
+        "page": 11,
+        "chunk_ids": {
+          "A": "telecom-06-00045:11:fixed:0:c8a224683d33",
+          "B": "telecom-06-00045:11:paragraph:1:a8cab621d251",
+          "C": "telecom-06-00045:11:paragraph:1:a8cab621d251"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The rapid charge/discharge sentence is complete and identifies the application context."
+      },
+      {
+        "question_id": "q10",
+        "page": 12,
+        "chunk_ids": {
+          "A": "telecom-06-00045:12:fixed:0:fe432dd42268",
+          "B": "telecom-06-00045:12:paragraph:0:2a989b2ab9ad",
+          "C": "telecom-06-00045:12:paragraph:0:2a989b2ab9ad"
+        },
+        "scores": {
+          "A": 1,
+          "B": 1,
+          "C": 1
+        },
+        "rationale": "Each chunk starts with the continuation 'range from'; the subject of the range is on the preceding page."
+      },
+      {
+        "question_id": "q11",
+        "page": 13,
+        "chunk_ids": {
+          "A": "telecom-06-00045:13:fixed:1:adab4c8ec58f",
+          "B": "telecom-06-00045:13:paragraph:1:b38d614a33f5",
+          "C": "telecom-06-00045:13:paragraph:1:b38d614a33f5"
+        },
+        "scores": {
+          "A": 2,
+          "B": 2,
+          "C": 2
+        },
+        "rationale": "The efficiency result and its operating range remain complete in all three chunks."
+      }
+    ],
+    "mean_score_out_of_2": {
+      "A": 1.9,
+      "B": 1.8,
+      "C": 1.8
+    }
+  },
+  "metadata": {
+    "test_questions": 5,
+    "top3_records_checked_per_strategy": 15,
+    "records_checked_total": 45,
+    "source_document_id_matches": "45/45",
+    "source_path_matches_manifest": "45/45",
+    "page_and_section_match_manifest": "45/45",
+    "C_test_filter_compliance": "9/9",
+    "all_filtered_question_top3_filter_compliance": "15/15",
+    "usefulness": "source and physical page support provenance; section supports the specified filter.",
+    "limitations": "The benchmark has one source document and section labels are page-range based. A page crossing a section boundary can receive only one section label, and section cannot distinguish passages on the same page."
+  },
+  "grounding": {
+    "scale": {
+      "0": "No retrieved evidence that supports the answer.",
+      "1": "Some relevant evidence is present, but key details or context are missing.",
+      "2": "Top-3 evidence is sufficient to answer and trace to the source."
+    },
+    "rows": [
+      {
+        "question_id": "q16",
+        "strategy": "A",
+        "score": 0,
+        "rationale": "Top-3 mentions hybrid harvesting generally or its challenges, but does not support the requested source types and benefits."
+      },
+      {
+        "question_id": "q17",
+        "strategy": "A",
+        "score": 1,
+        "rationale": "The page-19 chunk includes cost/integration details, but begins mid-sentence and omits part of the requested challenge list."
+      },
+      {
+        "question_id": "q18",
+        "strategy": "A",
+        "score": 1,
+        "rationale": "Top-3 contains related ML and adaptive-spectrum discussion, but not the specific spectrum-prediction evidence."
+      },
+      {
+        "question_id": "q19",
+        "strategy": "A",
+        "score": 2,
+        "rationale": "Rank 1 on page 25 contains the cited EnOcean source list."
+      },
+      {
+        "question_id": "q20",
+        "strategy": "A",
+        "score": 2,
+        "rationale": "Rank 1 on page 28 contains the measured two-to-three-order variability claim."
+      },
+      {
+        "question_id": "q16",
+        "strategy": "B",
+        "score": 0,
+        "rationale": "Top-3 contains no evidence listing the hybrid sources or explaining the claimed benefit."
+      },
+      {
+        "question_id": "q17",
+        "strategy": "B",
+        "score": 2,
+        "rationale": "Rank 1 on page 19 contains the full challenge list and integration considerations."
+      },
+      {
+        "question_id": "q18",
+        "strategy": "B",
+        "score": 2,
+        "rationale": "Rank 1 on page 23 describes real-time spectrum analysis and prediction of optimal bands."
+      },
+      {
+        "question_id": "q19",
+        "strategy": "B",
+        "score": 2,
+        "rationale": "Rank 2 on page 25 contains the exact EnOcean source list."
+      },
+      {
+        "question_id": "q20",
+        "strategy": "B",
+        "score": 2,
+        "rationale": "Rank 1 on page 28 contains the measured variability claim."
+      },
+      {
+        "question_id": "q16",
+        "strategy": "C",
+        "score": 0,
+        "rationale": "Section filtering narrows results but top-3 still lacks the source list and benefit evidence."
+      },
+      {
+        "question_id": "q17",
+        "strategy": "C",
+        "score": 2,
+        "rationale": "Rank 1 on page 19 contains the full challenge list and integration considerations."
+      },
+      {
+        "question_id": "q18",
+        "strategy": "C",
+        "score": 2,
+        "rationale": "Rank 1 on page 23 directly supports the prediction question."
+      },
+      {
+        "question_id": "q19",
+        "strategy": "C",
+        "score": 2,
+        "rationale": "Rank 2 on page 25 contains the exact EnOcean source list."
+      },
+      {
+        "question_id": "q20",
+        "strategy": "C",
+        "score": 2,
+        "rationale": "Rank 1 on page 28 contains the measured variability claim."
+      }
+    ],
+    "summary_out_of_2": {
+      "A": {
+        "scores_0_1_2": [
+          1,
+          2,
+          2
+        ],
+        "mean": 1.2
+      },
+      "B": {
+        "scores_0_1_2": [
+          1,
+          0,
+          4
+        ],
+        "mean": 1.6
+      },
+      "C": {
+        "scores_0_1_2": [
+          1,
+          0,
+          4
+        ],
+        "mean": 1.6
+      }
+    }
+  },
+  "strategy_impact": {
+    "A_vs_B": "On dev, A has higher Evidence Hit@3 (5/15 vs 4/15) and a slightly higher coherence sample mean (1.9 vs 1.8). B has higher test Evidence Hit@3 (4/5 vs 2/5) and grounding sample mean (1.6 vs 1.2); the test has only five questions and was not used for selection.",
+    "B_vs_C": "B and C have identical chunks and retrieval hit counts. C satisfies the supplied section filters, but the filters did not increase aggregate Evidence Hit@3 on this benchmark; q13 remains a dev miss.",
+    "resource_tradeoff": "A creates 266 chunks; B/C create 288. A full embedding pass took about 20.5 s and B about 18.0 s in this run. C reuses B's embeddings, so its 0.287 s ingest time is indexing-only and is not a cold-ingest comparison. All strategies used the same local 384-dimensional model and exact cosine search; API cost was zero.",
+    "selection_rule": "The pre-recorded dev rule ranks A first on Evidence Hit@3. Treat this as corpus-specific; review these AI-assisted manual labels before finalizing a choice."
+  }
+}

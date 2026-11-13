@@ -1,6 +1,6 @@
 # Starter · PostgreSQL + pgvector
 
-Bộ khởi động **tùy chọn** cho lab cá nhân. Docker Compose tạo PostgreSQL + pgvector local; các file trong `src/` là **khung pseudocode có TODO**, chưa đọc tài liệu, tạo embedding, lưu vector hay chạy benchmark. Bạn cần tự hiện thực. Vẫn có thể chọn Qdrant, Chroma hoặc vector store tương đương theo [GUIDE.md](../GUIDE.md).
+Bộ pipeline local cho lab cá nhân. Docker Compose tạo PostgreSQL + pgvector; mã trong `src/` đọc PDF, tạo embedding đa ngữ local, lưu vector và chạy ba cấu hình retrieval. Corpus và benchmark hiện được lấy từ `../data/` và `../benchmark/`.
 
 ## Cấu trúc
 
@@ -8,19 +8,11 @@ Bộ khởi động **tùy chọn** cho lab cá nhân. Docker Compose tạo Post
 starter/
 ├── docker-compose.yml     # PostgreSQL 16 + pgvector, chỉ mở cổng local
 ├── init.sql               # bật extension khi tạo database mới
-├── requirements.txt       # psycopg, pypdf và python-dotenv
+├── requirements.txt       # psycopg, pypdf, python-dotenv, sentence-transformers
 ├── .env.example           # cấu hình mẫu; copy thành .env
 ├── scripts/check_setup.py # kiểm tra kết nối và extension (đã chạy được)
-├── src/
-│   ├── models.py          # cấu trúc dữ liệu mẫu
-│   ├── ingestion.py       # TODO: đọc / chuẩn hóa tài liệu
-│   ├── chunking.py        # TODO: chia chunk
-│   ├── embeddings.py      # TODO: chọn model API hoặc local
-│   ├── store.py           # TODO: lưu vector, metadata và filter
-│   ├── evaluation.py      # TODO: chấm truy xuất, lưu trace
-│   └── run.py             # TODO: kết nối các bước thành pipeline
-├── data/                  # bạn tự chuẩn bị corpus được phép sử dụng
-└── results/               # lưu kết quả của bạn
+├── src/                   # ingestion, chunking, embedding, store, evaluation, run
+└── results/               # trace top-3 và metrics được tạo khi chạy
 ```
 
 ## 1. Cài và kiểm tra database
@@ -29,7 +21,7 @@ Cần Docker Desktop hoặc Docker Engine + Compose, Python **3.11–3.14**, và
 
 ```bash
 cd starter
-python3 -m venv .venv
+python -m venv .venv
 ```
 
 Kích hoạt `.venv`: macOS/Linux dùng `source .venv/bin/activate`; Windows PowerShell dùng `.venv\Scripts\Activate.ps1`. Sau đó:
@@ -50,16 +42,29 @@ Dừng container nhưng giữ dữ liệu:
 docker compose -p day6_student_starter stop
 ```
 
-## 2. Chọn embedding model
+## 2. Embedding model
 
-Điền key tương ứng trong `.env` nếu dùng OpenRouter, OpenAI hoặc Gemini; **không commit `.env`**. Model local không cần API key. `requirements.txt` chỉ có dependencies cơ bản: tự cài SDK hoặc thư viện local phù hợp với model bạn chọn và ghi lại version/lệnh cài trong báo cáo. Ghi tên model và số chiều; dùng cùng model cho toàn bộ chiến lược và vector query tương thích vector document.
+Mặc định dùng `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`, chạy local và không cần API key. Lần đầu chạy cần mạng để tải model. Có thể thay `EMBEDDING_MODEL` trong `.env`, nhưng phải ghi lại model và số chiều, đồng thời dùng cùng model cho cả ba chiến lược.
 
 ## 3. Hoàn thiện pipeline
 
-1. Đặt corpus vào `data/` hoặc cung cấp manifest/hướng dẫn truy cập. Đọc [GUIDE.md](../GUIDE.md) về **30 trang nội dung**, quyền dữ liệu và metadata.
-2. Hoàn thiện từng hàm TODO trong `src/`. Lưu ID tài liệu, nguồn, trang/vị trí và ít nhất một trường filter có ích.
-3. Xây ít nhất ba cấu hình; ví dụ A fixed-size, B theo đoạn, C như B nhưng có filter. Cần cùng corpus, model và benchmark; nạp lại không nhân đôi và xử lý chunk cũ khi dữ liệu đổi.
-4. Tự viết ít nhất 20 câu hỏi kèm evidence, tách dev/test trước khi thử theo [BENCHMARK.md](../BENCHMARK.md). Lưu trace top-3 và báo cáo đủ năm tiêu chí.
-5. Sau khi hoàn thiện, chạy `python -m src.run` từ thư mục `starter/`. Trước khi làm TODO, lệnh này **chủ động báo `NotImplementedError`**.
+1. Xem nguồn, quyền, trang nội dung và phân đoạn metadata trong [manifest](../data/manifest.json).
+2. Xác minh đủ câu hỏi, split và evidence trước khi chạy retrieval:
+   `python -m src.run --validate-only`
+3. Cấu hình A dùng chunk cố định; B dùng chunk theo đoạn; C dùng cùng chunking với B nhưng áp dụng filter theo `section` khi câu hỏi có filter.
+4. Chạy database: `docker compose -p day6_student_starter up -d --wait`, sau đó `python -m src.run`.
+5. Đọc `results/traces.json` và `results/summary.json`. Các nhãn coherence, metadata usefulness và grounding cần audit thủ công; pipeline không tự tạo nhãn này.
+
+Pipeline kiểm tra SHA-256 của PDF và benchmark theo manifest trước khi xử lý, ghim revision mặc định của model, và lưu hash cùng phiên bản runtime/package/PostgreSQL/pgvector và thiết bị embedding vào `results/summary.json`. Các package chính và dependency ảnh hưởng đến model/vector được ghim phiên bản trong `requirements.txt`.
+
+### Kiểm thử tái lập
+
+Sau khi database sẵn sàng và model đã tải về, chạy từ `starter/`:
+
+```bash
+python scripts/check_reproducibility.py
+```
+
+Script chạy pipeline hai lần, so sánh trace (điểm similarity được làm tròn 6 chữ số), metric, cấu hình và số chunk trong database; các trường thời gian được bỏ qua. Kỳ vọng: `Reproducibility OK`. Script ghi đè các file kết quả như một lần chạy bình thường.
 
 Lưu code, cấu hình, kết quả và lệnh chạy để người chấm tái lập; không commit key, dữ liệu mật hoặc dữ liệu không có quyền chia sẻ.

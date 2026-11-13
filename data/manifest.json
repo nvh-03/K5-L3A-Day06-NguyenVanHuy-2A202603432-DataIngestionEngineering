@@ -1,0 +1,89 @@
+{
+  "document_id": "telecom-06-00045",
+  "title": "RF Energy-Harvesting Techniques: Applications, Recent Developments, Challenges, and Future Opportunities",
+  "source": "data/telecom-06-00045.pdf",
+  "source_sha256": "2f2f6d7905e9c9df70a4d58ca24a89a7271e2e16ae4c553594813286e9eb2d72",
+  "benchmark_sha256": "64653484ef5e4c57fc83c7e87116c52c15d074466bb0c34c53972865ebb453d8",
+  "doi": "10.3390/telecom6030045",
+  "license": "CC BY 4.0, as stated in the article",
+  "content_page_ranges": [
+    [
+      2,
+      34
+    ]
+  ],
+  "sections": [
+    {
+      "name": "overview",
+      "page_ranges": [
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "fundamentals",
+      "page_ranges": [
+        [
+          5,
+          13
+        ]
+      ]
+    },
+    {
+      "name": "techniques",
+      "page_ranges": [
+        [
+          14,
+          20
+        ]
+      ]
+    },
+    {
+      "name": "developments",
+      "page_ranges": [
+        [
+          21,
+          23
+        ]
+      ]
+    },
+    {
+      "name": "applications",
+      "page_ranges": [
+        [
+          24,
+          27
+        ]
+      ]
+    },
+    {
+      "name": "challenges",
+      "page_ranges": [
+        [
+          28,
+          30
+        ]
+      ]
+    },
+    {
+      "name": "future",
+      "page_ranges": [
+        [
+          31,
+          33
+        ]
+      ]
+    },
+    {
+      "name": "conclusions",
+      "page_ranges": [
+        [
+          34,
+          34
+        ]
+      ]
+    }
+  ]
+}
